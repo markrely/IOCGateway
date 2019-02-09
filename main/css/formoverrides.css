@@ -1,0 +1,17 @@
+input.printFormat {
+    border: none;
+    background: none;
+    border-bottom: 1px solid #000;
+    text-align: right;
+	width:90px;
+	font-size:1.0em;
+}
+
+input.printFormat2 {
+border: none;
+background: none;
+border-bottom: 1px solid #000;
+text-align: right;
+width:148px;
+font-size:1.0em;
+}

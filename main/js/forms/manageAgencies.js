@@ -1,0 +1,62 @@
+$(document).ready(function(){
+ var $manageBondSubTypePage = $("#ManageBondSubType"),
+     $bondSubTypeNameContainer = $manageBondSubTypePage.find(".bondsubTypeName"),
+     $submitButton = $manageBondSubTypePage.find(".btn-next"),
+     $messageHolder = $manageBondSubTypePage.find("#messageHolder"),
+     $messageHolderBottom = $manageBondSubTypePage.find("#messageHolderBottom");
+
+ $(".btnCancel").on('click', function(){
+  event.preventDefault();
+  $("#ManageAgencyForm").attr('action', $("#ReferralPage").val());
+  $("#ManageAgencyForm").submit();
+  });
+
+
+	 $('.btn-default').click(function(){
+			$("#ManageBondSubTypeForm").attr('action', 'ManageBondType.cfm');
+			$('#ManageBondSubTypeForm').submit();
+    AddNewBtnClick();
+
+			});
+ $submitButton.click(function(event){
+  event.preventDefault();
+
+ if($('#bondsubTypeName').val().trim() == "")//we have to refer to the complete path to get the latest value
+ {
+  $bondSubTypeNameContainer.attr("class","col-sm-10 has-error");
+  $messageHolder
+   .attr("class","alert alert-danger")
+    .html("Please enter Bond Type Name.");
+  $messageHolderBottom
+     .attr("class","alert alert-danger")
+      .html("Please enter Bond Type Name.");
+ }
+ else{
+  $bondSubTypeNameContainer.attr("class","col-sm-10 bondsubTypeName");
+  $messageHolder
+   .attr("class","hide")
+    .html("");
+  $messageHolderBottom
+     .attr("class","hide")
+      .html("");
+   $(this).closest('form').submit();
+ }
+ });
+
+
+});
+$( window ).load(function() {
+ $(".agencyContact").find(".select2-drop").append('<table width="100%"><tr><td class="row"><button class="btn btn-block btn-default btn-xs addnew-item" onClick=""><i class="fa fa-plus-circle"></i> Add New Agnecy Contact</button></div></td></tr></table>');
+ AddNewBtnClick();
+});
+
+function AddNewBtnClick(){
+   $(".addnew-item").on('click', function(){
+    event.preventDefault();
+    $("#AgencyContactID").val('0');
+    $("#ReferralPage").val('../general/ManageAgencies.cfm');
+    $("#action").val('Add');
+    $("#ManageAgencyForm").attr('action', 'ManageAgencyContacts.cfm');
+    $("#ManageAgencyForm").submit();
+    });
+}
