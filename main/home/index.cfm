@@ -13,34 +13,24 @@
  	<h2>Welcome to the IOC GATEWAY</h2>
     </p>
  </div>
- <table class="table table-striped" style="width:750px;">
- <thead>
-  <tr>
-    <th>Application</th>
-    <th>Access Level</th>
-    <th>Front Page</th>
-    <th>Login</th>
-  </tr>
- </thead> 
+ Number of applications found: <cfoutput>#qAllUserApps.recordcount#</cfoutput>
+ <table class="table" style="width:300px;">
+ 
  <CFIF qAllUserApps.recordcount GT 0>
  <cfoutput query="qAllUserApps">
  <tr>
-    <td>#qAllUserApps.ApplicationName#</td>
-    <td>#qAllUserApps.AccessLevel#</td>
-    <td><a href="#qAllUserApps.AppRootURLPath#" target="_blank" class="btn btn-primary">Goto Front Page</a></td>
-    <td>
+ 	 <td>
     <cfform action="#qAllUserApps.LoginURLPath#" target="_blank" method="post" enctype="application/x-www-form-urlencoded" preloader="no">
-    <cfinput type="hidden" name="#qAllUserApps.LoginFormUName#" value="#session.UName#">
-    <cfinput type="hidden" name="#qAllUserApps.LoginFormPWord#" value="#session.password#">
-    <CFIF TRIM(qAllUserApps.LoginFormHiddenName) IS NOT "">
-    	<cfinput type="hidden" name="#qAllUserApps.LoginFormHiddenName#" value="#qAllUserApps.LoginFormHiddenValue#">
-    </CFIF>
-    <cfinput type="submit" name="Login" value="Login" class="btn btn-success">
-    
+        <cfinput type="hidden" name="#qAllUserApps.LoginFormUName#" value="#session.UName#">
+        <cfinput type="hidden" name="#qAllUserApps.LoginFormPWord#" value="#session.password#">
+        <CFIF TRIM(qAllUserApps.LoginFormHiddenName) IS NOT "">
+            <cfinput type="hidden" name="#qAllUserApps.LoginFormHiddenName#" value="#qAllUserApps.LoginFormHiddenValue#">
+        </CFIF>
+        <cfinput type="submit" name="Login" value="#qAllUserApps.ApplicationName#" class="btn btn-primary" style="width:250px;">
     </cfform>
-    
-    
     </td>
+
+   
   </tr>
  </cfoutput> 
  <cfelse>

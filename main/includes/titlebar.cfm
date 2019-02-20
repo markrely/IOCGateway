@@ -1,3 +1,6 @@
+<CFIF Not IsDefined("Session.Username")>
+	<cflocation url="#application.homewww#?error=expiredsession" addtoken="no">
+</CFIF>
 <header>
 <cfoutput>	
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
