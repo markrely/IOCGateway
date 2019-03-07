@@ -6,7 +6,6 @@ function openCaptchaDictionary(url) {
 	if (window.focus) {newwindow.focus()}
 	return false;
 }
-
 // -->
 </script>
 <CFIF IsDefined ("form.CaptchaWord")>
@@ -40,69 +39,69 @@ function openCaptchaDictionary(url) {
 <cfif IsDefined ("form.CaptchaWord") and IsBot IS "true">
  <cfset variables.Email = form.EMAIL>
 </cfif>
-<div class="wrapper full-page-wrapper page-login text-center">
- <div class="inner-page" id="forgot-password">
-  <div class="logo"><a href="index.cfm"><img src="img/IOC-CWS-logo-black.png" alt="" /></a></div>
-   <div class="login-box center-block">
-    <cfform method="post" enctype="application/x-www-form-urlencoded" name="ForgotPassword" preloader="no" role="form"  class="form-horizontal">
-     <cfinput type="hidden" name="captcha_check" value="#CaptchaArray[3][1][2]#">
-     <cfinput type="hidden" name="captcha_check2" value="#CaptchaArray[3][1][3]#">
-     <cfinput type="hidden" name="UsersIP" value="#variables.UsersIP#">
-     <cfinput type="hidden" name="ApplicationToken" value="#application.ApplicationToken#">
-     <p class="title" align="center">PASSWORD RESET REQUEST</p>
-     <!--- Email Group --->
-     <div class="form-group">
-     <label for="ResetPassword" class="control-label sr-only">Reset Password</label>
-     	<div class="col-sm-12">
-     		<div class="input-group useremail">
-     		<cfinput type="text" name="email" class="form-control" value="#variables.email#" maxlength="255" placeholder="Enter your email address here">
-     		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-     		</div>
-     	</div>
-     </div>
 
-     <!--- Captcha Group --->
-      <cfoutput>
-     <label for="Captcha" class="control-label sr-only">Captcha</label>
-     <div class="form-group">
-     	<div class="col-sm-12">
-         <div class="col-sm-offset-1 col-sm-12">
-                	Select the <b>#CaptchaArray[1][1][3]#</b> : <a href="captchahelp.cfm" onclick="return openCaptchaDictionary('captchahelp.cfm')"><b>(What is this?)</b></a>
-         </div>
-     		<p align="center">
+<div class="wrapper full-page-wrapper page-login">
+    <div class="logoX">
+        <a href="index.cfm"><img src="images/website-logo_sized-big.png" alt="Susana A.Mendoza - State of Illinois Comptroller" title="Susana A.Mendoza - State of Illinois Comptroller" class="img-fluid"/></a>
+    </div>
+    <div class="container-fluid inner-page text-center">
+        <div class="page-title">
+            <h1>IOC Gateway - Reset Password</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 col-xl-6">
+                <div class="login-box" id="forgot-password">
+                    <cfform method="post" enctype="application/x-www-form-urlencoded" name="ForgotPassword" preloader="no" role="form"  class="login-form">
+                        <cfinput type="hidden" name="captcha_check" value="#CaptchaArray[3][1][2]#">
+                        <cfinput type="hidden" name="captcha_check2" value="#CaptchaArray[3][1][3]#">
+                        <cfinput type="hidden" name="UsersIP" value="#variables.UsersIP#">
+                        <cfinput type="hidden" name="ApplicationToken" value="#application.ApplicationToken#">
+                        <!--- Email Group --->
+                        <div class="form-group row">
+                            <label for="txtEmail" class="col-sm-12 col-md-3 col-form-label">Email</label>
+                            <div class="col-sm-12 col-md-9">
+                                <div class="useremail">
+     		                        <cfinput type="text" name="email" class="form-control" value="#variables.email#" maxlength="255" placeholder="Enter your email address here">
+     		                    </div>
+                            </div>
+                        </div>
+                        <!--- Captcha Group --->
+                        <cfoutput>
+                            <div class="form-group">
+                	            Select the <b>#CaptchaArray[1][1][3]#</b> : <a href="captchahelp.cfm" onclick="return openCaptchaDictionary('captchahelp.cfm')"><b>(What is this?)</b></a>
+                                <div class="usercaptcha mt-1">
+                                    <cfloop index="i" from="1" to="#ListLen(NameList)#">
+                                        <CFSET ThisID = ListGetAt(IDList,i)>
+                                        <span class="input-group-addon pull-center">
+                                            <cfinput type="radio" name="CaptchaWord" value="#ThisID#">&nbsp;<i class="#ListGetAt(NameList,i)#"></i>
+                                        </span>
+                                    </cfloop>
+                                </div>
+     	                    </div>
+                        </cfoutput>
 
-           <cfloop index="i" from="1" to="#ListLen(NameList)#">
-           		<CFSET ThisID = ListGetAt(IDList,i)>
-            	   <span class="input-group-addon pull-center">
-                   	<cfinput type="radio" name="CaptchaWord" value="#ThisID#">&nbsp;<i class="#ListGetAt(NameList,i)#"></i></center>
-                   </span>
-            </cfloop>
-
-            </p>
-     	</div>
-     </div>
-     </cfoutput>
-     <!--- WARNINGS --->
-     <div id="messageHolder" class="hide"></div>
-      <CFIF IsDefined ("IsBot") AND IsBot IS "true">
-       <div class="alert alert-danger">
-        The captcha selected is incorrect.  Please select captcha correctly.
-       </div>
-      </CFIF>
-      <CFIF IsDefined ("IsBot") AND IsBot IS "NoEmailMatch">
-      <div class="alert alert-danger">
-       There is no account with the email address you entered.
-      </div>
-      </CFIF>
-     <!--- Reset Submit --->
-     <button type="submit" name="ResetPassword" class="btn btn-custom-primary btn-lg btn-block btn-login"><i class="fa fa-arrow-circle-o-right"></i> Reset Password</button>
-    </cfform>
-    <div class="links">
-    <p><a href="login.cfm">Login</a></p>
-   </div>
-  </div>
- </div>
- <div class="push-sticky-footer"></div>
+                        <CFIF IsDefined ("IsBot") AND IsBot IS "true">
+                            <div class="alert alert-danger">
+                                The captcha selected is incorrect.  Please select captcha correctly.
+                            </div>
+                        </CFIF>
+                        <CFIF IsDefined ("IsBot") AND IsBot IS "NoEmailMatch">
+                            <div class="alert alert-danger">
+                                There is no account with the email address you entered.
+                            </div>
+                        </CFIF>
+                        <!--- Reset Submit --->
+                        <div class="text-center mt-4">
+                            <button type="submit" name="ResetPassword" class="btn btn-primary">Reset Password</button>
+                        </div>
+                    </cfform>
+                    <div class="text-center mt-3">
+                        <a href="login.cfm" class="small">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="push-sticky-footer"></div>
 </div>
 <cfinclude template="includes/footer.cfm">
-<script src="js/forms/forgot.js"></script>

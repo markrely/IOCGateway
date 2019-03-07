@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
-<!--[if !(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<html>
 <head>
-	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="description" content="KingAdmin - Bootstrap Admin Dashboard Theme">
-	<meta name="author" content="The Develovers">
+	<meta name="description" content="Bootstrap">
+	<meta name="author" content="The Developers">
  <cfoutput>
  	<title>#application.WebSiteName#</title>
 	<!-- CSS -->
-	<link href="#application.homewww#/css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="#application.homewww#/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="#application.homewww#/css/main.css" rel="stylesheet" type="text/css">
+	<link href="#application.homewww#/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="#application.homewww#/css/bootstrap-glyphicons.min.css" rel="stylesheet" type="text/css">
+	<link href="#application.homewww#/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="#application.homewww#/css/common.css" rel="stylesheet" type="text/css">
+    <link href="#application.homewww#/css/login.css" rel="stylesheet" type="text/css">
 	
 
 

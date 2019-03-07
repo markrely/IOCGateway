@@ -15,7 +15,7 @@ var reason = "";
   }
 
   return true;
-};
+}
 function validateUsername(fld) {
     var error = "";
     var illegalChars = /#/; // do not allow pound
@@ -33,7 +33,8 @@ function validateUsername(fld) {
         fld.style.background = 'White';
     } 
     return error;
-};
+}
+
 function validatePassword(fld) {
     var error = "";
     var illegalChars = /#/; // do not allow pound 
@@ -51,62 +52,89 @@ function validatePassword(fld) {
         fld.style.background = 'White';
     }
    return error;
-} 
+}
+
+function togglePassword(el){
+    var obj=document.getElementById('password');
+    var toggleTextObj =document.getElementById('toggleLabelText');
+    // Checked State
+    var checked = el.checked;
+
+    if(checked){
+        // Changing type attribute
+        obj.type = 'text';
+        // Change the Text
+        toggleTextObj.textContent= "Hide";
+    } else{
+        // Changing type attribute
+        obj.type = 'password';
+        // Change the Text
+        toggleTextObj.textContent= "Show";
+    }
+}
+
 </script>
 
-</head>
 <body>
-<div class="wrapper full-page-wrapper page-login text-center">
- <div class="inner-page" id="login-page">
-  <div class="logo"><img src="img/IOC-CWS-logo-black.png" alt="" />
-  </div> <!-- END logo -->
-   <!--- Lock user from attempting login until penality time is reached --->
-  <CFIF IsDefined ("URL.error") AND IsDefined ("URL.errorNumber") AND  (URL.errorNumber NEQ 21 AND URL.errorNumber GT 0)>
-   <div class="col-md-8 col-md-offset-2">
-    <cfinclude template="error.cfm">
-   </div>
-  <cfelse>
-  	<CFIF IsDefined ("URL.error") AND IsDefined ("URL.errorNumber") AND  URL.errorNumber IS 21>
-     <div class="row"><div class="alert alert-danger col-md-8 col-md-offset-2">
-      USERNAME / PASSWORD COMBO Invalid!
-     </div></div>
-    </CFIF>
-   <div class="login-box center-block">
-   
-      <cfform action="../main/login/login.cfm" method="post" enctype="application/x-www-form-urlencoded" name="LoginForm" preloader="no" class="navbar-form navbar-right" id="LoginForm" onsubmit="return validateFormOnSubmit(this)">
-     <!--- Username Group --->
-     <p class="title">Use your username</p>
-     <div class="form-group">
-     <label for="username" class="control-label sr-only">Username</label>
-     <div class="col-sm-12">
-     	<div class="input-group userNameContainer">
-     		<cfinput type="text" name="username" class="form-control" value="#variables.username#" maxlength="255" placeholder="username">
-     		<span class="input-group-addon"><i class="fa fa-user"></i></span>
-     	</div>
-     </div>
-     </div>
-     <!--- Password Group --->
-     <label for="password" class="control-label sr-only">Password</label>
-     <div class="form-group">
-     <div class="col-sm-12">
-     	<div class="input-group passwordContainer">
-     		<cfinput type="password" name="password" class="form-control" value="#variables.password#" maxlength="50" placeholder="password">
-     		<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-     	</div>
-     </div>
-     </div>
-     <div id="messageHolder" class="hide"> The username or password you entered is incorrect.</div>
-     <!--- Login Submit Group --->
-     <button type="submit" name="Login" class="btn btn-custom-primary btn-lg btn-block btn-login" onClick="this.form.submit()"><i class="fa fa-arrow-circle-o-right"></i> Login</button>
-    </cfform>
-    <div class="links">
-     <p><a href="forgot.cfm">Forgot Username or Password?</a></p>
-     <p><a href="newaccount.cfm">Create New Account</a></p>
+<div class="wrapper full-page-wrapper page-login">
+    <div class="logoX">
+        <a href="index.cfm"><img src="images/website-logo_sized-big.png" alt="Susana A.Mendoza - State of Illinois Comptroller" title="Susana A.Mendoza - State of Illinois Comptroller" class="img-fluid"/></a>
     </div>
-   </div>
-  </CFIF>
- </div> <!-- END Inner -->
- <div class="push-sticky-footer"></div>
+    <div class="container-fluid inner-page text-center">
+        <div class="page-title">
+            <h1>IOC Gateway - Login</h1>
+        </div>
+        <!--- Lock user from attempting login until penality time is reached --->
+        <CFIF IsDefined ("URL.error") AND IsDefined ("URL.errorNumber") AND  (URL.errorNumber NEQ 21 AND URL.errorNumber GT 0)>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <cfinclude template="error.cfm">
+                </div>
+            </div>
+        <cfelse>
+        <CFIF IsDefined ("URL.error") AND IsDefined ("URL.errorNumber") AND  URL.errorNumber IS 21>
+            <div class="alert alert-danger">
+                USERNAME / PASSWORD COMBO Invalid!
+            </div>
+        </CFIF>
+        <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 col-xl-6">
+                <div class="login-box">
+                    <cfform action="../main/login/login.cfm" method="post" enctype="application/x-www-form-urlencoded" name="LoginForm" preloader="no" class="login-form" id="LoginForm" onsubmit="return validateFormOnSubmit(this)">
+                    <!--- Username Group --->
+                    <div class="form-group row">
+                        <label class="col-12 col-md-3 col-form-label">Username</label>
+                        <div class="col-12 col-md-7">
+                            <cfinput type="text" name="username" class="form-control" value="#variables.username#" maxlength="255" placeholder="username">
+                        </div>
+                    </div>
+                    <!--- Password Group --->
+                    <div class="form-group row">
+                        <label class="col-12 col-md-3 col-form-label">Password</label>
+                        <div class="col-12 col-md-7">
+                            <cfinput type="password" name="password" class="form-control" value="#variables.password#" maxlength="50" placeholder="password" id="password">
+                        </div>
+                        <div class="col-12 col-md-2 pl-0">
+                            <div class="custom-control custom-checkbox mt-2">
+                                <input type="checkbox" class="custom-control-input" onChange="togglePassword(this);" id="customControlInline">
+                                <label  class="custom-control-label showlabel" for="customControlInline" id="toggleLabelText">Show</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--- Login Submit Group --->
+                    <div class="text-center mt-4">
+                        <button type="submit" name="Login" class="btn btn-primary" onClick="this.form.submit()">Login</button>
+                    </div>
+                    </cfform>
+                    <div class="text-center mt-3">
+                        <span class="small"><a href="forgot.cfm">Forgot Password?</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="small"><a href="ur.cfm">Forgot Username?</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </CFIF>
+    </div> <!-- END Inner -->
+    <div class="push-sticky-footer"></div>
 </div> <!-- END wrapper -->
 <cfinclude template="includes/footer.cfm">
-<script src="/js/forms/login.js"></script>
+

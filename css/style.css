@@ -1,0 +1,121 @@
+/*------------------------------------------------*/
+/*  Footer
+/*------------------------------------------------*/
+footer {
+    background-color: #EFEEEB;
+    padding: 15px 20px;
+    font-size: 14px;
+}
+
+.push-sticky-footer-inner {
+    height: 50px;
+}
+
+/*------------------------------------------------*/
+/*  Header
+/*------------------------------------------------*/
+header {
+    background: url("../images/website-branding_001.png") no-repeat;
+    background-size: 100% 107px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    padding: 12px 0;
+}
+
+/*------------------------------------------------*/
+/*  Navigation
+/*------------------------------------------------*/
+
+.topmenu .dropdown-toggle{
+    margin: 0;
+    padding: 10px 15px;
+}
+
+.topmenu .navbar-nav .nav-link{
+    color: #000;
+}
+
+.topmenu .nav-item.show a.dropdown-toggle{
+    background: yellow;
+}
+
+.topmenu .dropdown-menu{
+    background: yellow;
+    border: none;
+    margin: 0;
+}
+
+.topmenu .dropdown-item{
+    font-family: 'AvenirBold', Helvetica, Arial, sans-serif !important;
+}
+
+.topmenu .dropdown-item:focus, .topmenu .dropdown-item:hover,
+.topmenu .dropdown-item.active, .topmenu .dropdown-item:active{
+    background-color: transparent;
+}
+
+.mymenu{
+    background-color: #145089;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/*------------------------------------------------*/
+/*  Fixing the footer to the bottom of the page
+/*------------------------------------------------*/
+.wrapper-inner{
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+    /* always the same as footer height including paddings and/or borders */
+}
+
+.card {
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.paragraph{
+    font-size: 18px;
+}
+
+/*------------------------------------------------*/
+/*  Media Queries
+/*------------------------------------------------*/
+
+@media (min-width: 992px) {
+
+}
+
+@media (max-width: 1199.98px) {
+    .logo{
+        width: 36%;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+    header {
+        margin-bottom: 10px;
+    }
+
+    .logo{
+        width: auto;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+}
+
+@media (max-width: 575.98px) {
+    .logo {
+        width: 78%;
+    }
+
+}

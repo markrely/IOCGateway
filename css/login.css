@@ -1,0 +1,136 @@
+/*------------------------------------------------*/
+/*  Login Header
+/*------------------------------------------------*/
+.logoX {
+    background: url(../images/website-branding_001.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.logoX a {
+    padding: 15px;
+    display: inline-block;
+}
+
+/*------------------------------------------------*/
+/*  Footer
+/*------------------------------------------------*/
+.footer {
+    color: #fff;
+    padding: 10px;
+    background-color: #555555;
+    font-size: 0.9em;
+   /* height: 40px;*/
+}
+
+/*------------------------------------------------*/
+/*  Login Form
+/*------------------------------------------------*/
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -40px;
+    /* always the same as footer height including paddings and/or borders */
+}
+
+/* full page such as 404, login, register */
+.full-page-wrapper .inner-page {
+    padding-top: 5%;
+    margin-bottom: 30px;
+}
+
+.push-sticky-footer {
+    height: 40px;
+}
+
+.page-title {
+    margin: 20px 0 30px;
+}
+
+.page-title h1 {
+    text-align: center;
+    background: #145089;
+    color: #fff;
+    padding: 10px 30px;
+    display: inline-block;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 36px;
+}
+
+.page-login .login-box {
+    width: 100%;
+    border: 1px solid #dddddd;
+    padding: 25px;
+    text-align: left;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+}
+
+.login-form .row {
+    margin-left: 0;
+}
+
+.login-form .col-form-label {
+    display: inline-block;
+    background: #585757;
+    color: #fff;
+    padding: 10px !important;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 18px;
+    vertical-align: top;
+    text-align: center !important;
+}
+
+.showlabel{
+    font-size: 12px;
+    line-height: 24px;
+}
+
+
+/*------------------------------------------------*/
+/*  Media Queries
+/*------------------------------------------------*/
+
+
+@media (max-width: 1199.98px) {
+
+}
+
+@media (max-width: 991.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+    .full-page-wrapper .inner-page {
+        padding-top: 1%;
+        margin-bottom: 20px;
+    }
+
+    .page-title{
+        margin: 20px 20px 30px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .login-form .row{
+        margin-right: 0;
+    }
+
+    .login-form [class*="col-"] {
+        padding: 0;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+}
+
+
