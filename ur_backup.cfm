@@ -20,7 +20,7 @@ function openCaptchaDictionary(url) {
         
         <cfinvoke
             component="security.IOCSecurity"
-            method="GetUsernameForReovery"
+            method="GetUserEmailsByFirstLastName"
             returnvariable="qUsers">
             <cfinvokeargument name="formData" value="#form#">
         </cfinvoke>
@@ -48,12 +48,13 @@ function openCaptchaDictionary(url) {
 <CFSET NameList = CaptchaArray[2][1][2]>
 <CFSET DescriptionList = CaptchaArray[2][1][3]>
 
-<cfparam name="variables.Email" default="">
-
+<cfparam name="variables.FirstName" default="">
+<cfparam name="variables.LastName" default="">
 <cfparam name="variables.UsersIP" default="#CGI.REMOTE_ADDR#">
 <!--- <cfparam name="variables.ApplicationID" default=""> --->
 <cfif IsDefined ("form.CaptchaWord") and IsBot IS "true">
- <cfset variables.Email = form.Email>
+ <cfset variables.FirstName = form.FirstName>
+ <cfset variables.LastName = form.LastName>
 </cfif>
 
 <div class="wrapper full-page-wrapper page-login">
@@ -73,16 +74,24 @@ function openCaptchaDictionary(url) {
                         <cfinput type="hidden" name="captcha_check2" value="#CaptchaArray[3][1][3]#">
                         <cfinput type="hidden" name="UsersIP" value="#variables.UsersIP#">
                         <cfinput type="hidden" name="ApplicationToken" value="#application.ApplicationToken#">
-                        <!--- Email  --->
+                        <!--- First Name --->
                         <div class="form-group row">
-                            <label for="FirstName" class="col-sm-12 col-md-3 col-form-label">Email</label>
+                            <label for="FirstName" class="col-sm-12 col-md-3 col-form-label">First Name</label>
                             <div class="col-sm-12 col-md-9">
                                 <div class="firstname">
-     		                        <cfinput type="text" name="Email" message="Please enter a valid email" validateat="onSubmit" validate="email" required="yes" class="form-control" value="#variables.Email#" maxlength="255" placeholder="Enter your email">
+     		                        <cfinput type="text" name="FirstName" class="form-control" value="#variables.FirstName#" maxlength="255" placeholder="First Name">
      		                    </div>
                             </div>
                         </div>
-                        
+                         <!--- Last Name --->
+                        <div class="form-group row">
+                            <label for="LastName" class="col-sm-12 col-md-3 col-form-label">Last Name</label>
+                            <div class="col-sm-12 col-md-9">
+                                <div class="lastname">
+     		                        <cfinput type="text" name="LastName" class="form-control" value="#variables.LastName#" maxlength="255" placeholder="Last Name">
+     		                    </div>
+                            </div>
+                        </div>
                         <!--- Captcha Group --->
                         <cfoutput>
                             <div class="form-group">
@@ -128,30 +137,41 @@ function openCaptchaDictionary(url) {
             	<!--- ****************************************** --->
                 <div class="login-box" id="forgot-password">
               <cfoutput> 
+              <cfform method="post" enctype="multipart/form-data" preloader="no"> 
+              	<div class="form-group row">
+                	<div class="col-sm-12 col-md-9">
+                    	Select the Email address that belongs to you and your username will be emailed to you after you press submit. 
+                  
+                    </div>
+                </div>
                <CFIF qUsers.recordcount GT 0>
-              		<cfform method="post" enctype="multipart/form-data" preloader="no"> 
-                      <cfinput type="hidden" name="ID" value="#qUsers.userID#">
-                     
-                        <div class="form-group row">
-                            <div class="col-sm-12 col-md-9 alert alert-success">
-                                 Your email address was found.  <strong>Click "Recover"</strong> to receive an email with your username. 
+				   <cfloop query="qUsers">
+                   <div class="form-group row">
+                            
+                            <div class="col-sm-1">
+                                    <cfinput type="radio" name="ID" value="#qUsers.userID#">
                             </div>
-                        </div>
-                         <div class="form-group row">
-                         <div class="col-sm-12 col-md-9">
-                                <cfinput type="submit" name="SendUsername" value="Recover" class="btn btn-primary">&nbsp;&nbsp;&nbsp;
-                                <a href="ur.cfm" class="btn btn-primary">Try again?</a>
-                           </div>
-                          </div>
-                      </cfform>
-                  <cfelse>
+                            <div class="col-sm-11 col-md-8">
+                                   #qUsers.Email# 
+                            </div>
+                   </div>
+                   </cfloop>
+                 <div class="form-group row">
+                 <div class="col-sm-12 col-md-9">
+                 		<cfinput type="submit" name="SendUsername" value="Submit" class="btn btn-primary">&nbsp;&nbsp;&nbsp;
+                 		<a href="ur.cfm" class="btn btn-primary">Try again?</a>
+                   </div>
+                  </div>
+
+               <cfelse>
                	  <div class="form-group row">
                   	 <div class="col-sm-12 col-md-9">
-                     	No accounts with the email address  "<strong>#Form.Email#</strong>" were found. <BR>
-                        <a href="ur.cfm" class="btn btn-primary">Try again?</a>
+                     	No accounts found for #Form.FirstName# #Form.LastName#
                      </div>
+                  	
                   </div>
-               </CFIF>         
+               </CFIF>    
+              </cfform>
 			  </cfoutput>
               </div>
             </CFIF>    

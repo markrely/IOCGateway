@@ -88,7 +88,7 @@
                       <CFSET structData.password = form.password>
                       <CFSET structData.email = "">
                       <CFSET structData.applicationToken = application.ApplicationToken>
-                      <CFSET structData.AuthenticationMethod = 1>
+                      <CFSET structData.AuthenticationMethod = 8>
                       <CFSET structData.CreatorsID = 1>
                       <CFSET structData.LoginAttempts = Session.LoginData.AttemptNumber>
                       <cfinvoke
