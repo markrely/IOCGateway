@@ -7,7 +7,6 @@
   returnvariable="qAllUserApps">
   <cfinvokeargument name="IncomingUserID" value="#session.userID#">
 </cfinvoke>
-
     <div class="card mb-5">
         <div class="card-body">
             <!---<p>Number of applications found: <b><cfoutput>#qAllUserApps.recordcount#</cfoutput></b></p>--->

@@ -38,9 +38,9 @@
             <img src="#application.memberhomewww#/images/Gateway.png" alt="IOC Gateway">
             <span>IOC Gateway</span>
         </h1>
-        <p class="paragraph mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+        <p class="paragraph mb-4">The Illinois Office of the Comptroller (IOC) Gateway provides access to most of your IOC authorized applications.  If your authorized IOC application is not displayed, please continue to use your previously provided web address.
         <div class="navbar navbar-expand-md navbar-dark mymenu">
-            <span class="navbar-brand">Application  - <b><cfoutput>#qAllUserApps.recordcount#</cfoutput></b></span>
+            <span class="navbar-brand">Number of Applications  - <b><cfoutput>#qAllUserApps.recordcount#</cfoutput></b></span>
         </div>
 
 </cfoutput>

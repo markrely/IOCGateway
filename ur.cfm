@@ -8,6 +8,7 @@ function openCaptchaDictionary(url) {
 }
 // -->
 </script>
+
 <CFIF IsDefined ("form.CaptchaWord")>
 
  <cfinvoke
@@ -36,6 +37,7 @@ function openCaptchaDictionary(url) {
 
 
 </CFIF>
+
 <!--- Get Random Captcha word --->
 <cfinvoke
  component="security.IOCSecurity"
@@ -103,8 +105,9 @@ function openCaptchaDictionary(url) {
                                 You should receive your username by email within 30 minutes.  If you do not see it, make sure to check your spam
                              </div>
                         </CFIF>
-
-                        <CFIF IsDefined ("IsBot") AND IsBot IS "true">
+					
+                        <CFIF (IsDefined ("IsBot") AND IsBot IS "true") OR IsDefined ("form.Captcha_Check") AND NOT IsDefined("IsBot")>
+                        	
                             <div class="alert alert-danger">
                                 The captcha selected is incorrect.  Please select captcha correctly.
                             </div>
